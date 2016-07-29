@@ -4,8 +4,10 @@
   "description": "React with Redux and Express - Recipes",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
-    "start": "npm-run-all --parallel open:server lint:watch test:watch",
+    "start": "npm-run-all --parallel open:server lint:watch",
+    "start-windows": "npm-run-all --parallel open-windows:server lint:watch",
     "open:server": "babel-watch ./server/application.js",
+    "open-windows:server": "babel-node ./server/application.js",
     "lint": "node_modules/.bin/esw webpack.config.* client server ./utilities",
     "lint:watch": "npm run lint -- --watch",
     "test": "NODE_ENV=test mocha --reporter spec utilities/testLoader.js \"client/**/*.spec.js\" \"server/**/*.spec.js\"",
