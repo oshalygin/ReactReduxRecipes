@@ -1,9 +1,15 @@
-process.env.NODE_ENV = "test";
+process.env.NODE_ENV = "test"; //eslint-disable-line no-process-env
 require("babel-register")();
 
-require.extensions[".css"] = function () { return null; };
-require.extensions[".png"] = function () { return null; };
-require.extensions[".jpg"] = function () { return null; };
+require.extensions[".css"] = function () {
+    return null;
+};
+require.extensions[".png"] = function () {
+    return null;
+};
+require.extensions[".jpg"] = function () {
+    return null;
+};
 
 let jsdom = require("jsdom").jsdom;
 let exposedProperties = ["window", "navigator", "document"];
