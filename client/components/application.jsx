@@ -16,4 +16,11 @@ Application.propTypes = {
     children: PropTypes.object.isRequired,
 };
 
-export default connect()(Application);
+
+function mapStateToProps(state, ownProps) {
+    return {
+        loading: 0
+    };
+}
+
+export default connect(mapStateToProps)(Application);

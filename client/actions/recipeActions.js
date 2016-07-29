@@ -11,11 +11,9 @@ export function loadRecipesSuccess(recipes) {
 
 export function loadRecipes() {
     return function (dispatch) {
-        //Hard coded for now, will return via api.
         return axios.get("/api/recipe")
             .then(recipes => {
-                dispatch(loadRecipesSuccess);
-                console.log(recipes.data);
+                dispatch(loadRecipesSuccess(recipes.data));
             })
             .catch(error => {
                 dispatch(xhrCallFailure);

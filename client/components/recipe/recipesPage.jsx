@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as recipeActions from "../../actions/recipeActions.js";
 
-class RecipePage extends React.Component {
+class RecipesPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
     }
     render() {
-        const {recipes} = this.props;
+        // const {recipes} = this.props;
+        console.log(this.props);
         return (
             <div>
                 <h4>Recipes</h4>
@@ -18,7 +19,7 @@ class RecipePage extends React.Component {
     }
 };
 
-RecipePage.propTypes = {
+RecipesPage.propTypes = {
     recipes: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 }
@@ -35,4 +36,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesPage);
