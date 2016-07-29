@@ -1,30 +1,43 @@
 /* eslint-disable no-console */
 import express from "express";
-import webpack from "webpack";
 import path from "path";
-import config from "../webpack.config.dev";
+import bodyParser from "body-parser";
+import webpack from "webpack";
+import configuration from "../webpack.config.dev";
+import colors from "colors";
 import open from "open";
 
-const port = 9999;
-const applicationCompiler = webpack(config);
+import router from "./routes";
 
 let application = express();
+application.use(bodyParser.urlencoded({ extended: true }));
+application.use(bodyParser.json());
 
+let port = process.env.PORT || 9999;
+
+const applicationCompiler = webpack(configuration);
 application.use(require("webpack-dev-middleware")(applicationCompiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: configuration.output.publicPath
 }));
 
 application.use(require("webpack-hot-middleware")(applicationCompiler));
 
+application.use('/api', router);
+application.use('/client', express.static(path.join(__dirname, "../client")));
+
 application.get("*", (request, response) => {
-    response.sendFile(path.join(__dirname, "../src/index.html"));
+    let clientEntryPoint = path.join(__dirname, '../client/index.html');
+    response.sendFile(clientEntryPoint);
 });
 
+
 application.listen(port, (error) => {
-    if (error) {
-        console.log(error);
-        return;
+    if (!!error) {
+        console.log(error.bold.red);
     }
     open(`http://localhost:${port}`);
+    console.log(`Serving API AT http://localhost:${port}`.blue);
 });
+
+export default application;

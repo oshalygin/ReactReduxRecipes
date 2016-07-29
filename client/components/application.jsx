@@ -16,4 +16,4 @@ Application.propTypes = {
     children: PropTypes.object.isRequired,
 };
 
-export default connect(Application);
+export default connect()(Application);
