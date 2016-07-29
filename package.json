@@ -5,23 +5,22 @@
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch test:watch",
-    "open:src": "babel-node utilities/src.server.js",
-    "lint": "node_modules/.bin/esw webpack.config.* src utilities",
+    "open:server": "babel-watch ./server/application.js",
+    "lint": "node_modules/.bin/esw webpack.config.* application server ./utilities",
     "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter spec utilities/test.loader.js \"src/**/*.spec.js\"",
+    "test": "NODE_ENV=test mocha --reporter spec utilities/testLoader.js \"client/**/*.spec.js\" \"server/**/*.spec.js\"",
     "test:watch": "npm run test -- --watch",
-
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build:html": "babel-node utilities/buildHtml.js",
-
     "prebuild": "npm-run-all clean-dist test lint build:html",
     "build": "babel-node utilities/build.js",
-    "postbuild" : "babel-node utilities/dist.server.js"
+    "postbuild": "babel-node utilities/dist.server.js"
   },
   "author": "Oleg Shalygin",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.13.1",
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",
