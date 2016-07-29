@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import { xhrCallStarted, xhrCallFailure } from "./xhrStatusActions";
 import axios from "axios";
 
 export function loadRecipesSuccess(recipes) {
@@ -14,5 +15,10 @@ export function loadRecipes() {
             .then(recipes => {
                 dispatch(loadRecipesSuccess);
             })
-    }
+            .catch(error => {
+                dispatch(xhrCallFailure);
+                throw (error);
+            });
+    };
 }
+
