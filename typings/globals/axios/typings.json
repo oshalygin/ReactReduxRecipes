@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/b38089d5a67ddbb2b60b0bd4369507182610bac2/axios/axios.d.ts",
+    "raw": "registry:dt/axios#0.9.1+20160629101425",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/b38089d5a67ddbb2b60b0bd4369507182610bac2/axios/axios.d.ts"
+  }
+}
