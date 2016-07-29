@@ -9,9 +9,9 @@ export function getAllRecipes(query, callback) {
         queryCriteria.ingredient = query.ingredient;
     }
 
-    let recipePromise = axios.get("../assets/recipes.json")
+    let recipePromise = axios.get(`https://raw.githubusercontent.com/datascienceinc/frontend-code-test/master/recipes.json`)
         .then(recipes => {
-            callback(null, recipes);
+            callback(null, recipes.data);
         })
         .catch(error => {
             console.log(error.red);

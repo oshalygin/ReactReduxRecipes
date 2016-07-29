@@ -1,5 +1,5 @@
 import express from "express";
-import * as dataAccessApi from "../dataAccess/mockRecipeDataAccess";
+import * as dataAccessApi from "../dataAccess/recipeDataAccess";
 
 export default function recipeController(dataAccess = dataAccessApi) {
 

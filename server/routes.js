@@ -6,7 +6,7 @@ let recipeController = recipeApi();
 
 // {api/recipe}
 router
-    .route("/engine")
+    .route("/recipe")
     .get(recipeController.get);
 
 export default router;
