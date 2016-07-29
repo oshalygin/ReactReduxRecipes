@@ -12,7 +12,7 @@ const RecipeList = ({recipes}) => {
             </thead>
             <tbody>
                 {recipes.map(recipe => {
-                    <RecipeListRow key={recipe.id} recipe={recipe} />
+                    <RecipeListRow key={recipe.id} recipe={recipe} />;
                 }) }
             </tbody>
         </table>

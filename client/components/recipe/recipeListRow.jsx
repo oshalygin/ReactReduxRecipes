@@ -8,7 +8,7 @@ const RecipeListRow = ({recipe}) => {
             <td>{recipe.cook_time}</td>
         </tr>
     );
-}
+};
 
 RecipeListRow.PropTypes = {
     recipe: PropTypes.object.isRequired

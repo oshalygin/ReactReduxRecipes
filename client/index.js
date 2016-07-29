@@ -6,8 +6,11 @@ import configureStore from "./store/configureStore.dev";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
 import { loadRecipes } from "./actions/recipeActions";
+import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/toastr/build/toastr.min.css";
+import "../node_modules/material-design-lite/material.min.js";
+import "./styles/material.icons.css";
+import "./styles/material.style.css";
 
 import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
