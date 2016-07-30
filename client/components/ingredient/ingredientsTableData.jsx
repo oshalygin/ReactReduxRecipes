@@ -10,7 +10,7 @@ function highlight(ingredient, index, searchCriteria) {
 
     return (
         <span>
-            {before}<mark>{match}</mark>{after}
+            {before}<code>{match}</code>{after}
         </span>
     );
 }

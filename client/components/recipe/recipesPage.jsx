@@ -26,6 +26,9 @@ class RecipesPage extends React.Component {
 
     componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line
+        // this.setState({
+        //     recipes: this.props.recipes
+        // });
     }
 
     componentDidUpdate() {
@@ -34,9 +37,12 @@ class RecipesPage extends React.Component {
 
     filterIngredients(ingredient) {
         const {recipes} = this.props;
-        return recipes.filter(recipe => {
-            return this.ingredientExistsInRecipe(ingredient, recipe.ingredients);
-        });
+        if (!!ingredient) {
+            return recipes.filter(recipe => {
+                return this.ingredientExistsInRecipe(ingredient, recipe.ingredients);
+            });
+        }
+        return recipes;
     }
 
     ingredientExistsInRecipe(query, ingredients) {
