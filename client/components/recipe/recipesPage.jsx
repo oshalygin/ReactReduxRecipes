@@ -19,7 +19,7 @@ class RecipesPage extends React.Component {
         return (
             <div className="content-grid mdl-grid">
                 <div className="mdl-layout-spacer"></div>
-                <div className="mdl-cell mdl-cell--4-col">
+                <div className="mdl-cell mdl-cell--8-col">
                     <RecipeList recipes={recipes} />
                 </div>
                 <div className="mdl-layout-spacer"></div>

@@ -22,10 +22,8 @@ const RecipeList = ({recipes}) => {
                 </thead>
                 <tbody>
                     {recipes.map(recipe => {
-                        const recipeId = `row[${recipe.id}]`;
                         return (<RecipeListRow
                             key={recipe.id}
-                            recipeId={recipeId}
                             recipe={recipe} />);
                     }) }
                 </tbody>
