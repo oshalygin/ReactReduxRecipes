@@ -8,7 +8,7 @@ export default function recipeReducer(state = initialState.recipes, action) {
                 return action.recipes.reduce((recipes, recipe) => {
                     return [
                         ...recipes,
-                        {...recipe, id: `${recipe.type}-${recipe.name}`.toLowerCase()} ];
+                        {...recipe, id: `${recipe.type.split(" ").join("-")}-${recipe.name}`.toLowerCase()} ];
             }, []);
     }
         default: {
