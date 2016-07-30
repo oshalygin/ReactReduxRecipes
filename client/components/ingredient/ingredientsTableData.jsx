@@ -1,44 +1,43 @@
 import React, { PropTypes } from "react";
 
-function mutate(s) {
-    return function splice() {
-        let a = s.split("");
-        Array.prototype.splice.apply(a, arguments);
-        return a.join("");
-    };
+function highlight(ingredient, index, searchCriteria) {
+    if (index < 0) {
+        return ingredient;
+    }
+    const before = ingredient.substring(0, index);
+    const match = ingredient.substring(index, index + searchCriteria.length);
+    const after = ingredient.substring(index + searchCriteria.length);
+
+    return (
+        <span>
+            {before}<mark>{match}</mark>{after}
+        </span>
+    );
 }
 
 function highlightQuery(ingredients, searchCriteria) {
 
-    return ingredients.reduce((ingredientsArray, ingredient) => {
-        let index = ingredient
+    return ingredients.reduce((ingredientsDisplay, ingredient) => {
+        const index = ingredient
             .toLowerCase()
-            .indexOf(searchCriteria);
-        let highlightedIngredient = ingredient;
-        if (index >= 0) {
-            highlightedIngredient = mutate(ingredient)((index + searchCriteria.length), 0, "</code>");
-            highlightedIngredient = mutate(highlightedIngredient)((index), 0, "<code>");
-        }
+            .indexOf(searchCriteria.toLowerCase());
+        let highlightedIngredient = highlight(ingredient, index, searchCriteria);
 
-        return [...ingredientsArray, highlightedIngredient];
-    }, []);
+        if (!!ingredientsDisplay) {
+            return <span>{ingredientsDisplay}, {highlightedIngredient}</span>;
+        }
+        return <span>{highlightedIngredient}</span>;
+    });
 }
 
 
 const IngredientsTableData = ({ingredients, query}) => {
 
-    const parsedIngredients = highlightQuery(ingredients, query)
-        .reduce((collectionOfIngredients, ingredient) => {
-            if (!collectionOfIngredients) {
-                return ingredient;
-            }
-            return { __html: `${collectionOfIngredients}, ${ingredient}` };
-        });
+    const parsedIngredients = highlightQuery(ingredients, query);
 
     return (
-        <td
-            className="mdl-data-table__cell--non-numeric"
-            dangerouslySetInnerHTML={parsedIngredients}>
+        <td className="mdl-data-table__cell--non-numeric">
+            {parsedIngredients}
         </td>
 
     );
