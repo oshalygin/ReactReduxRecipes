@@ -1,13 +1,43 @@
 /* eslint-disable max-len */
 import React, { PropTypes } from "react";
+// import { helpers } from "../../../utilities/helpers";
+function mutate(s) {
+    return function splice() {
+        let a = s.split("");
+        Array.prototype.splice.apply(a, arguments);
+        return a.join("");
+    };
+}
 
-const RecipeListRow = ({recipe}) => {
-    const parsedIngredients = recipe.ingredients.reduce((ingredients, ingredient) => {
+function highlightQuery(ingredients, searchCriteria) {
+    // let ingredients = ["Rice", "Chicken Stock", "Parmesan Cheese", "White Wine", "Butter", "Salt", "Pepper", "Peas"];
+    // let query = "r";
+    return ingredients.reduce((ingredientsArray, ingredient) => {
+        let index = ingredient
+            .toLowerCase()
+            .indexOf(searchCriteria);
+        let highlightedIngredient = ingredient;
+        if (index >= 0) {
+
+            highlightedIngredient = mutate(ingredient)((index + searchCriteria.length), 0, "</mark>");
+            highlightedIngredient = mutate(highlightedIngredient)((index), 0, "<mark>");
+
+        }
+
+        return [...ingredientsArray, highlightedIngredient];
+    }, []);
+}
+
+const RecipeListRow = ({recipe, query}) => {
+    console.log(query);
+    const highlightedIngredients = highlightQuery(recipe.ingredients, query);
+    const parsedIngredients = highlightedIngredients.reduce((ingredients, ingredient) => {
         if (!ingredients) {
             return ingredient;
         }
         return `${ingredients}, ${ingredient}`;
     });
+
     return (
         <tr>
             <td>
@@ -24,7 +54,8 @@ const RecipeListRow = ({recipe}) => {
 };
 
 RecipeListRow.propTypes = {
-    recipe: PropTypes.object.isRequired
+    recipe: PropTypes.object.isRequired,
+    query: PropTypes.string
 };
 
 export default RecipeListRow;

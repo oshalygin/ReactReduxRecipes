@@ -2,10 +2,9 @@
 import React, { PropTypes } from "react";
 import RecipeListRow from "./recipeListRow.jsx";
 
-const RecipeList = ({recipes}) => {
+const RecipeList = ({recipes, query}) => {
     return (
         <div>
-            <h4 className="mdl-typography--text-center">Recipes</h4>
             <table className="mdl-data-table mdl-shadow--2dp">
                 <thead>
                     <tr>
@@ -24,7 +23,8 @@ const RecipeList = ({recipes}) => {
                     {recipes.map(recipe => {
                         return (<RecipeListRow
                             key={recipe.id}
-                            recipe={recipe} />);
+                            recipe={recipe}
+                            query={query} />);
                     }) }
                 </tbody>
             </table>
@@ -33,7 +33,8 @@ const RecipeList = ({recipes}) => {
 };
 
 RecipeList.propTypes = {
-    recipes: PropTypes.array.isRequired
+    recipes: PropTypes.array.isRequired,
+    query: PropTypes.string
 };
 
 export default RecipeList;

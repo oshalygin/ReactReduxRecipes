@@ -302,7 +302,7 @@
     ], // specify the maximum depth that blocks can be nested (off by default)
     "max-len": [
       2,
-      100,
+      150,
       2
     ], // specify the maximum length of a line in your program (off by default)
     "max-params": [
