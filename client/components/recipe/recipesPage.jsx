@@ -6,6 +6,7 @@ import * as recipeActions from "../../actions/recipeActions.js";
 
 import RecipeList from "./recipeList.jsx";
 import IngredientFilter from "../ingredient/ingredientFilter.jsx";
+import NotFound from "../common/notFound.jsx";
 
 class RecipesPage extends React.Component {
     constructor(props, context) {
@@ -22,13 +23,14 @@ class RecipesPage extends React.Component {
 
     componentWillReceiveProps(newProps) {
         this.setState({ recipes: newProps.recipes });
+
     }
 
     componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line
-        // this.setState({
-        //     recipes: this.props.recipes
-        // });
+        this.setState({ //eslint-disable-line
+            recipes: this.props.recipes
+        });
     }
 
     componentDidUpdate() {
@@ -62,6 +64,11 @@ class RecipesPage extends React.Component {
 
     render() {
         const {recipes, query} = this.state;
+        const recipeContent = !!recipes.length
+            ? (<RecipeList
+                recipes={recipes}
+                query={query} />)
+            : (<NotFound message={`There were no matches for ${query}...`} />);
         return (
             <div className="content-grid mdl-grid">
                 <div className="mdl-layout-spacer"></div>
@@ -69,9 +76,7 @@ class RecipesPage extends React.Component {
                     <div className="mdl-cell mdl-cell--2-col">
                         <IngredientFilter onChange={this.updateRecipeState} />
                     </div>
-                    <RecipeList
-                        recipes={recipes}
-                        query={query} />
+                    {recipeContent}
                 </div>
                 <div className="mdl-layout-spacer"></div>
             </div>

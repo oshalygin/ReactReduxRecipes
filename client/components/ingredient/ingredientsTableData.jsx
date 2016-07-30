@@ -6,40 +6,31 @@ function highlight(ingredient, index, searchCriteria) {
     }
     const before = ingredient.substring(0, index);
     const match = ingredient.substring(index, index + searchCriteria.length);
+    const searchQuery = (!!match ? <code>{match}</code> : null);
     const after = ingredient.substring(index + searchCriteria.length);
-
     return (
         <span>
-            {before}<code>{match}</code>{after}
+            {before}{searchQuery}{after}
         </span>
     );
 }
 
 function highlightQuery(ingredients, searchCriteria) {
-
     return ingredients.reduce((ingredientsDisplay, ingredient) => {
         const index = ingredient
             .toLowerCase()
             .indexOf(searchCriteria.toLowerCase());
-        let highlightedIngredient = highlight(ingredient, index, searchCriteria);
-
-        if (!!ingredientsDisplay) {
-            return <span>{ingredientsDisplay}, {highlightedIngredient}</span>;
-        }
-        return <span>{highlightedIngredient}</span>;
-    });
+        const highlightedIngredient = highlight(ingredient, index, searchCriteria);
+        return <span>{ingredientsDisplay} {highlightedIngredient} | </span>;
+    }, []);
 }
 
-
 const IngredientsTableData = ({ingredients, query}) => {
-
     const parsedIngredients = highlightQuery(ingredients, query);
-
     return (
         <td className="mdl-data-table__cell--non-numeric">
             {parsedIngredients}
         </td>
-
     );
 };
 

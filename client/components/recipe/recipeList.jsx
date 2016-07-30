@@ -21,10 +21,11 @@ const RecipeList = ({recipes, query}) => {
                 </thead>
                 <tbody>
                     {recipes.map(recipe => {
-                        return (<RecipeListRow
-                            key={recipe.id}
-                            recipe={recipe}
-                            query={query} />);
+                        return (
+                            <RecipeListRow
+                                key={recipe.id}
+                                recipe={recipe}
+                                query={query} />);
                     }) }
                 </tbody>
             </table>
