@@ -1,4 +1,5 @@
-Build Status:&nbsp;&nbsp; [![Build Status](https://travis-ci.org/oshalygin/ReactReduxRecipes.svg?branch=master)](https://travis-ci.org/oshalygin/ReactReduxRecipes)
+&nbsp;&nbsp; [![Build Status](https://travis-ci.org/oshalygin/ReactReduxRecipes.svg?branch=master)](https://travis-ci.org/oshalygin/ReactReduxRecipes)
+[![Coverage Status](https://coveralls.io/repos/github/oshalygin/ReactReduxRecipes/badge.svg?branch=master)](https://coveralls.io/github/oshalygin/ReactReduxRecipes?branch=master)
 
 
 ##To run this application follow these steps:
