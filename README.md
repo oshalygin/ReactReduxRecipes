@@ -1,3 +1,6 @@
+Build Status:&nbsp;&nbsp; [![Build Status](https://travis-ci.org/oshalygin/ReactReduxRecipes.svg?branch=master)](https://travis-ci.org/oshalygin/ReactReduxRecipes)
+
+
 ##To run this application follow these steps:
 1.  Clone this repository
 2.  Run `npm install` to pull in the project dependencies
