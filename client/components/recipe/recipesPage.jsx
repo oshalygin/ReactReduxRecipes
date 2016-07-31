@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as recipeActions from "../../actions/recipeActions.js";
 
-import RecipeList from "./recipeList.jsx";
+import RecipeTable from "./recipeTable.jsx";
+import IngredientList from "../ingredient/ingredientList.jsx";
 import IngredientFilter from "../ingredient/ingredientFilter.jsx";
 import NotFound from "../common/notFound.jsx";
 
@@ -14,16 +15,17 @@ class RecipesPage extends React.Component {
 
         this.state = {
             recipes: Object.assign([], ...props.recipes),
-            query: ""
+            query: "",
+            ingredients: []
         };
         this.updateRecipeState = this.updateRecipeState.bind(this);
         this.filterIngredients = this.filterIngredients.bind(this);
         this.ingredientExistsInRecipe = this.ingredientExistsInRecipe.bind(this);
+        this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
         this.setState({ recipes: newProps.recipes });
-
     }
 
     componentDidMount() {
@@ -62,23 +64,50 @@ class RecipesPage extends React.Component {
         });
     }
 
+    updateIngredientList() {
+
+    }
+
+    checkboxChangeHandler(event) {
+        const retrievedRecipe = this.props.recipes.find(recipe => recipe.id === event.target.id);
+        const recipeToUpdate = {...retrievedRecipe, checked: !retrievedRecipe.checked };
+        this.props.actions.updateRecipe(recipeToUpdate);
+        return this.updateIngredientList();
+    }
+
     render() {
-        const {recipes, query} = this.state;
+        const {recipes, query, ingredients} = this.state;
         const recipeContent = !!recipes.length
-            ? (<RecipeList
+            ? (<RecipeTable
                 recipes={recipes}
-                query={query} />)
+                query={query}
+                checked= {this.checkboxChangeHandler} />)
             : (<NotFound message={`There were no matches for ${query}...`} />);
+        const ingredientContent = !!ingredients.length
+            ? (<span>
+                <p className="mdl-typography--text-center mdl-typography--headline">
+                    Ingredients to purchase...
+                </p>
+                <IngredientList ingredients={ingredients} />
+            </span>)
+            : (<span></span>);
+
+        // const ingredients = ["Apples", "Oranges", "Mandarins", "Derplords", "Bananas"];
         return (
-            <div className="content-grid mdl-grid">
-                <div className="mdl-layout-spacer"></div>
-                <div className="mdl-cell mdl-cell--8-col">
+            <div>
+                <div className="content-grid mdl-grid">
                     <div className="mdl-cell mdl-cell--2-col">
                         <IngredientFilter onChange={this.updateRecipeState} />
                     </div>
-                    {recipeContent}
                 </div>
-                <div className="mdl-layout-spacer"></div>
+                <div className="mdl-grid">
+                    <div className="mdl-cell mdl-cell--9-col">
+                        {recipeContent}
+                    </div>
+                    <div className="mdl-cell mdl-cell--3-col">
+                        {ingredientContent}
+                    </div>
+                </div>
             </div>
         );
     }

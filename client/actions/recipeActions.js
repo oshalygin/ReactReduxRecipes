@@ -9,6 +9,13 @@ export function loadRecipesSuccess(recipes) {
     };
 }
 
+export function updateRecipeSuccess(recipe) {
+    return {
+        type: actionTypes.UPDATE_RECIPE_SUCCESS,
+        recipe
+    };
+}
+
 export function loadRecipes() {
     return function (dispatch) {
         return axios.get("/api/recipe")
@@ -21,4 +28,11 @@ export function loadRecipes() {
             });
     };
 }
+
+export function updateRecipe(recipe) {
+    return function (dispatch) {
+        dispatch(updateRecipeSuccess(recipe));
+    };
+}
+
 
