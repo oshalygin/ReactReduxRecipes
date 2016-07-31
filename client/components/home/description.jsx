@@ -37,10 +37,11 @@ const Description = () => {
                 <li>Mocha</li>
                 <li>Expect</li>
                 <li>Redux Mock Store</li>
-                <li>Nock,</li>
+                <li>Nock</li>
                 <li>jsdom</li>
                 <li>Toastr</li>
                 <li>Enzyme</li>
+                <li>Istanbul</li>
                 <li>Babel</li>
             </ul>
         </div>
