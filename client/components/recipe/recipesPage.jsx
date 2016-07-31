@@ -65,14 +65,23 @@ class RecipesPage extends React.Component {
     }
 
     updateIngredientList() {
+        const updatedIngredients = this.props.recipes
+            .filter(recipe => recipe.checked)
+            .reduce((listOfIngredients, filteredRecipe) => {
+                const compiledListOfIngredients = [...listOfIngredients, ...filteredRecipe.ingredients];
+                return [...new Set(compiledListOfIngredients)];
+            }, [])
+            .slice()
+            .sort();
 
+      this.setState({ ingredients: updatedIngredients });
     }
 
     checkboxChangeHandler(event) {
-        const retrievedRecipe = this.props.recipes.find(recipe => recipe.id === event.target.id);
-        const recipeToUpdate = {...retrievedRecipe, checked: !retrievedRecipe.checked };
-        this.props.actions.updateRecipe(recipeToUpdate);
-        return this.updateIngredientList();
+        const retrievedRecipe = this.props.recipes
+            .find(recipe => recipe.id === event.target.id);
+        retrievedRecipe.checked = !retrievedRecipe.checked;
+        this.updateIngredientList();
     }
 
     render() {
@@ -85,14 +94,13 @@ class RecipesPage extends React.Component {
             : (<NotFound message={`There were no matches for ${query}...`} />);
         const ingredientContent = !!ingredients.length
             ? (<span>
-                <p className="mdl-typography--text-center mdl-typography--headline">
+                <p className="mdl-typography--text-center mdl-typography--title">
                     Ingredients to purchase...
                 </p>
                 <IngredientList ingredients={ingredients} />
             </span>)
             : (<span></span>);
 
-        // const ingredients = ["Apples", "Oranges", "Mandarins", "Derplords", "Bananas"];
         return (
             <div>
                 <div className="content-grid mdl-grid">
