@@ -1,14 +1,14 @@
 import expect from "expect";
-// import mock from "mock-require";
+import mock from "mock-require";
 import * as recipeActions from "./recipeActions";
 import * as actionTypes from "./actionTypes";
 
 import thunk from "redux-thunk";
 
 import configureMockStore from "redux-mock-store";
-
 const middleware = [thunk];
-const mockStore = configureMockStore(middleware);
+const mockStore = configureMockStore(middleware); //eslint-disable-line no-unused-vars
+
 
 describe("Recipe Actions", () => {
 
@@ -43,28 +43,46 @@ describe("Recipe Actions", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("calling loadRecipes properly makes a call to the api", () => {
+    it("calling loadRecipes properly makes a call to the api endpoint of '/api/recipe'", () => {
 
-        // const recipes = [
-        //     { type: "Mexican" },
-        //     { type: "Italian" }
-        // ];
+        const expected = "/api/recipe";
 
-        // mock("axios", {
-        //     get: function () {
-        //         console.log("derp");
-        //         return this;
-        //     },
-        //     then: function () {
-        //         return recipes;
-        //     }
-        // });
-
-
-        recipeActions.loadRecipes()().then(actual => {
-            expect(actual).toEqual("hi");
+        mock("axios", {
+            get: function (endpoint) {
+                expect(endpoint).toEqual(expected);
+                return this;
+            },
+            then: function () {
+                return this;
+            },
+            catch: function () {
+                return this;
+            }
         });
 
-        // expect(actual).toEqual(expected);
+        recipeActions.loadRecipes()();
+
+    });
+
+    it("calling loadRecipes calls the dispatch function", () => {
+
+        const expected = typeof function () { };
+
+        mock("axios", {
+            get: function () {
+                return this;
+            },
+            then: function (data) {
+                let actual = typeof data;
+                expect(actual).toEqual(expected);
+                return this;
+            },
+            catch: function () {
+                return this;
+            }
+        });
+
+        recipeActions.loadRecipes()();
+
     });
 });
