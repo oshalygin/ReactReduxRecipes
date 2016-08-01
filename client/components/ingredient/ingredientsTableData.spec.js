@@ -2,8 +2,8 @@
 import expect from "expect";
 import { mount, shallow } from "enzyme";
 import TestUtils from "react-addons-test-utils";
-import React from "react";
-import { highlight, highlightQuery, IngredientsTableData } from "./ingredientsTableData.jsx";
+import React, { PropTypes } from "react";
+import IngredientsTableData, { highlight, highlightQuery } from "./ingredientsTableData.jsx";
 
 describe("<IngredientsTableData />", () => {
 
@@ -32,6 +32,24 @@ describe("<IngredientsTableData />", () => {
 
         const renderredOutput = shallow(result);
         const actual = renderredOutput.html();
+
+        expect(actual).toEqual(expected);
+
+    });
+
+    it("The table data was properly parsed in the table", () => {
+
+        const ingredients = ["Apples", "Oranges", "Rice"];
+
+        const searchCriteria = "le";
+        const props = {
+            ingredients,
+            query: searchCriteria
+        };
+        const expected = "<span><span><span> <span>App<code>le</code>s</span> | </span> Oranges | </span> Rice | </span>";
+
+        const renderredOutput = shallow(<IngredientsTableData {...props} />);
+        const actual = renderredOutput.childAt(0).html();
 
         expect(actual).toEqual(expected);
 

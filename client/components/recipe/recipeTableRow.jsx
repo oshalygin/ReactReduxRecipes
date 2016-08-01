@@ -1,5 +1,4 @@
 import React, { PropTypes } from "react";
-
 import IngredientsTableData from "../ingredient/ingredientsTableData.jsx";
 
 const RecipeTableRow = ({recipe, query, checked}) => {

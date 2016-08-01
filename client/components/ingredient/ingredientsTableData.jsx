@@ -25,7 +25,7 @@ export function highlightQuery(ingredients, searchCriteria) {
     }, []);
 }
 
-const IngredientsTableData = ({ingredients, query}) => {
+export const IngredientsTableData = ({ingredients, query}) => {
     const parsedIngredients = highlightQuery(ingredients, query);
     return (
         <td className="mdl-data-table__cell--non-numeric">

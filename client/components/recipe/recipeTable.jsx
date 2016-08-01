@@ -7,9 +7,7 @@ const RecipeTable = ({recipes, query, checked}) => {
             <thead>
                 <tr>
                     <th>
-                        <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" htmlFor="table-header">
-                            <input type="checkbox" id="table-header" className="mdl-checkbox__input" />
-                        </label>
+                        &nbsp;
                     </th>
                     <th className="mdl-data-table__cell--non-numeric">Name</th>
                     <th className="mdl-data-table__cell--non-numeric">Type</th>
