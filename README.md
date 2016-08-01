@@ -9,7 +9,7 @@
 2.  Run `npm install` to pull in the project dependencies.
 3.  Run `npm start -s` to kick off the application.  It should automatically load a browser window and point to `http://localhost:9999`.  If the browser window does not load, then manually navigate your browser to `http://localhost:9999`.
 3.  If you are on a Windows environment, run `npm run start-windows -s`. `babel-watch` doesn't work on Windows as it uses unix named pipes.
-4.  Run `npm test` to explicitly run the tests in the solution.Note that they are ran upon application start regardless, but this is a quicker feedback loop.
+4.  Run `npm test` to explicitly run the tests in the solution.  Note that they are ran upon application start regardless, but this is a quicker feedback loop.
 
 ####This application implements the following requirements::
 
