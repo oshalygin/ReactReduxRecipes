@@ -12,7 +12,7 @@
     "lint:watch": "npm run lint -- --watch",
     "test:watch": "npm run tests -- --watch",
     "tests": "NODE_ENV=test mocha --reporter min",
-    "test": "babel-node ./node_modules/.bin/isparta cover --include 'server/**/*.js*' --include 'client/**/*.js*' _mocha",
+    "test": "NODE_ENV=test babel-node ./node_modules/.bin/isparta cover --include 'server/**/*.js*' --include 'client/**/*.js*' _mocha",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build:html": "babel-node utilities/buildHtml.js",
