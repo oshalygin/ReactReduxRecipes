@@ -11,7 +11,7 @@
 3.  If you are on a Windows environment, run `npm run start-windows -s`. `babel-watch` doesn't work on Windows as it uses unix named pipes.
 4.  Run `npm test` to explicitly run the tests in the solution.  Note that they are ran upon application start regardless, but this is a quicker feedback loop.
 
-####This application implements the following requirements::
+####This application implements the following requirements:
 
 * Using the provided JSON data representing a collection of meal recipes, create a micro frontend application that meets the following criteria:
 
