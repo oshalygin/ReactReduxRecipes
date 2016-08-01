@@ -40,6 +40,3 @@ IngredientsTableData.propTypes = {
 };
 
 export default IngredientsTableData;
-
-
-
