@@ -18,7 +18,7 @@
     "build:html": "babel-node utilities/buildHtml.js",
     "prebuild": "npm-run-all clean-dist test lint build:html",
     "build": "babel-node utilities/build.js",
-    "postbuild": "babel-node ./server/application.js"
+    "postbuild": "babel-node ./server/application.production.js"
   },
   "author": "Oleg Shalygin",
   "license": "MIT",

@@ -12,7 +12,7 @@ export default {
   devtool: "source-map",
   noInfo: false,
   entry: [
-    "./dist/index"
+    "./client/index.js"
   ],
   target: "web",
   output: {
@@ -26,7 +26,8 @@ export default {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin(GLOBALS),
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin("material.icons.css"),
+    new ExtractTextPlugin("material.style.css"),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ],

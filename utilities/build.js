@@ -24,7 +24,6 @@ webpack(webpackConfig).run((error, stats) => {
     }
 
     console.log(`Webpack stats: ${stats}`);
-
     console.log("The application was built to production specifications and written to the '/dist' folder".green);
     return 0;
 

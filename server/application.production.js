@@ -14,7 +14,7 @@ application.use(bodyParser.json());
 let port = process.env.PORT || 9999; //eslint-disable-line no-process-env
 
 application.use("/api", router);
-application.use("/dist", express.static(path.join(__dirname, "../dist")));
+application.use(express.static(path.join(__dirname, "../dist")));
 
 application.get("*", (request, response) => {
     let clientEntryPoint = path.join(__dirname, "../dist/index.html");

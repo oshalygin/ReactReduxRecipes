@@ -3,8 +3,6 @@ const wallabyWebpack = require("wallaby-webpack");
 module.exports = function (wallaby) {
 
     const webpackPostprocessor = wallabyWebpack({
-        // webpack options
-
         externals: {
             // Use external version of React instead of rebuilding it
             "react": "React" //eslint-disable-line
@@ -16,7 +14,6 @@ module.exports = function (wallaby) {
 
     return {
         files: [
-            // not required if using PhantomJs2 - http://wallabyjs.com/docs/integration/phantomjs2.html
             { pattern: "node_modules/babel-polyfill/dist/polyfill.min.js", instrument: false },
             { pattern: "node_modules/phantomjs-polyfill/bind-polyfill.js", instrument: false },
             { pattern: "node_modules/react/dist/react-with-addons.js", instrument: false },
