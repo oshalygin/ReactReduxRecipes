@@ -15,7 +15,7 @@ describe("<Description />", () => {
     it("Includes three headers which describe the application", () => {
         const wrapper = setup();
         let actual = wrapper.find("h4").children(0).length;
-        let expected = 3;
+        let expected = 2;
 
         expect(actual).toEqual(expected);
 
