@@ -8,7 +8,7 @@ const Description = () => {
             <ol>
                 <li>Clone this repository</li>
                 <li>Run <kbd>npm install</kbd> to pull in the project dependencies</li>
-                <li>Run <kbd>npm start -s</kbd> to kick off the application.  It should automatically load a browser window and point to <code>http://localhost:9999</code>.  If the browser window does not load, then manually navigate your browser to <code>http://localhost:9999</code>.</li>
+                <li>Run <kbd>npm start</kbd> to kick off the application.  It should automatically load a browser window and point to <code>http://localhost:9999</code>.  If the browser window does not load, then manually navigate your browser to <code>http://localhost:9999</code>.</li>
                 <li>If you are on a Windows environment, run <kbd>npm run start-windows -s</kbd>. <code>babel-watch</code> doesn't work on Windows as it uses unix named pipes.</li>
                 <li>Run <kbd>npm test</kbd> to explicitly run the tests in the solution.Note that they are ran upon application start regardless, but this is a quicker feedback loop.</li>
             </ol>
