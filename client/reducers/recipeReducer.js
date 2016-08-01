@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
 
