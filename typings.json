@@ -3,6 +3,8 @@
   "dependencies": {},
   "globalDependencies": {
     "axios": "registry:dt/axios#0.9.1+20160629101425",
+    "cheerio": "registry:dt/cheerio#0.17.0+20160407085313",
+    "enzyme": "registry:dt/enzyme#2.4.1+20160709041153",
     "expect": "registry:dt/expect#1.13.4+20160316155526",
     "express": "registry:dt/express#4.0.0+20160317120654",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160701212727",

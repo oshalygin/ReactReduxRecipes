@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 
-function highlight(ingredient, index, searchCriteria) {
+export function highlight(ingredient, index, searchCriteria) {
     if (index < 0) {
         return ingredient;
     }
@@ -15,7 +15,7 @@ function highlight(ingredient, index, searchCriteria) {
     );
 }
 
-function highlightQuery(ingredients, searchCriteria) {
+export function highlightQuery(ingredients, searchCriteria) {
     return ingredients.reduce((ingredientsDisplay, ingredient) => {
         const index = ingredient
             .toLowerCase()

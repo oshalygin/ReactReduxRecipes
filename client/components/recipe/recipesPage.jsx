@@ -9,7 +9,7 @@ import IngredientList from "../ingredient/ingredientList.jsx";
 import IngredientFilter from "../ingredient/ingredientFilter.jsx";
 import NotFound from "../common/notFound.jsx";
 
-class RecipesPage extends React.Component {
+export class RecipesPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 

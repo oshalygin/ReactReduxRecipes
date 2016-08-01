@@ -1,4 +1,6 @@
 /// <reference path="globals/axios/index.d.ts" />
+/// <reference path="globals/cheerio/index.d.ts" />
+/// <reference path="globals/enzyme/index.d.ts" />
 /// <reference path="globals/expect/index.d.ts" />
 /// <reference path="globals/express-serve-static-core/index.d.ts" />
 /// <reference path="globals/express/index.d.ts" />

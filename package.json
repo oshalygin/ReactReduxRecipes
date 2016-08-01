@@ -11,7 +11,7 @@
     "lint": "node_modules/.bin/esw webpack.config.* client client/**/*.jsx server ./utilities",
     "lint:watch": "npm run lint -- --watch",
     "test:watch": "npm run tests -- --watch",
-    "tests": "mocha --reporter min",
+    "tests": "NODE_ENV=test mocha --reporter min",
     "test": "babel-node ./node_modules/.bin/isparta cover --include 'server/**/*.js*' --include 'client/**/*.js*' _mocha",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
