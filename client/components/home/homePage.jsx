@@ -11,7 +11,7 @@ class HomePage extends React.Component {
         return (
             <div className="content-grid mdl-grid">
                 <div className="mdl-layout-spacer"></div>
-                <div className="mdl-cell mdl-cell--5-col">
+                <div className="mdl-cell mdl-cell--6-col">
                     <Description />
                     <div className="mdl-typography--text-center">
                         <Link to="recipes" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"

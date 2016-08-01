@@ -8,7 +8,7 @@
     "start-windows": "npm-run-all --parallel open-windows:server lint:watch",
     "open:server": "babel-watch ./server/application.js",
     "open-windows:server": "babel-node ./server/application.js",
-    "lint": "node_modules/.bin/esw webpack.config.* client client/**/*.jsx server ./utilities",
+    "lint": "node_modules/.bin/esw webpack.config.* client/**/*.js client/**/*.jsx server/**/*.js test ./utilities",
     "lint:watch": "npm run lint -- --watch",
     "test:watch": "npm run tests -- --watch",
     "tests": "NODE_ENV=test mocha --reporter min",
@@ -18,7 +18,7 @@
     "build:html": "babel-node utilities/buildHtml.js",
     "prebuild": "npm-run-all clean-dist test lint build:html",
     "build": "babel-node utilities/build.js",
-    "postbuild": "babel-node utilities/dist.server.js"
+    "postbuild": "babel-node ./server/application.js"
   },
   "author": "Oleg Shalygin",
   "license": "MIT",

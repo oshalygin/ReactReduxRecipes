@@ -2,7 +2,7 @@
 import "babel-polyfill";
 import React from "react";
 import { render } from "react-dom";
-import configureStore from "./store/configureStore.dev";
+import configureStore from "./store/configureStore";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
 import { loadRecipes } from "./actions/recipeActions";
@@ -12,8 +12,6 @@ import "../node_modules/material-design-lite/material.min.js";
 import "./styles/material.icons.css";
 import "./styles/material.style.css";
 import "./images/favicon.ico";
-// import "./images/noResult.png";
-
 
 import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
