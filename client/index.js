@@ -6,6 +6,8 @@ import configureStore from "./store/configureStore";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
 import { loadRecipes } from "./actions/recipeActions";
+import { saveSate } from "./reducers/localStorage";
+
 import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/material-design-lite/material.min.js";
@@ -23,8 +25,14 @@ import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
 import RecipesPage from "./components/recipe/recipesPage.jsx";
 
+
 const store = configureStore();
 store.dispatch(loadRecipes());
+
+store.subscribe(() => {
+    saveSate(store.getState());
+});
+
 
 render(
     <Provider store={store}>
