@@ -33,11 +33,8 @@ if (!store.getState().recipes.length) {
 }
 
 store.subscribe(() => {
-    console.log("saving state....");
     saveSate(store.getState());
 });
-
-console.log(store.getState());
 
 render(
     <Provider store={store}>

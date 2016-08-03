@@ -20,6 +20,7 @@
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157",
     "source-map": "registry:dt/source-map#0.0.0+20160317120654",
     "uglify-js": "registry:dt/uglify-js#2.6.1+20160316155526",
+    "uuid": "registry:dt/uuid#3.3.0+20160728152600",
     "webpack": "registry:dt/webpack#1.12.9+20160523035535"
   }
 }

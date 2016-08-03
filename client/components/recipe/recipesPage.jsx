@@ -115,7 +115,7 @@ RecipesPage.propTypes = {
     recipeActions: PropTypes.object.isRequired
 };
 
-function updateIngredients(recipes) {
+export function updateIngredients(recipes) {
     const updatedingredients = recipes
         .filter(recipe => recipe.checked)
         .reduce((listOfIngredients, filteredRecipe) => {
@@ -130,7 +130,6 @@ function updateIngredients(recipes) {
 
 function mapStateToProps(state) {
     const listOfIngredients = updateIngredients(state.recipes);
-    console.log(listOfIngredients);
     return {
         recipes: state.recipes,
         ingredients: listOfIngredients
