@@ -4,6 +4,7 @@ import initialState from "./initialState";
 export default function recipeReducer(state = initialState.recipes, action) {
     switch (action.type) {
         case actionTypes.LOAD_RECIPES_SUCCESS: {
+            console.log("reducer called");
                 return action.recipes.reduce((recipes, recipe) => {
                     return [
                         ...recipes,

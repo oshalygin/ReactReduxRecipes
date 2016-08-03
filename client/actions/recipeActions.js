@@ -31,7 +31,9 @@ export function loadRecipes() {
 
 export function updateRecipe(recipe) {
     return function (dispatch) {
-        dispatch(updateRecipeSuccess(recipe));
+        const toggledRecipe = Object.assign({}, recipe);
+        toggledRecipe.checked = !recipe.checked;
+        dispatch(updateRecipeSuccess(toggledRecipe));
     };
 }
 

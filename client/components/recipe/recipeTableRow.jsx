@@ -2,11 +2,12 @@ import React, { PropTypes } from "react";
 import IngredientsTableData from "../ingredient/ingredientsTableData.jsx";
 
 const RecipeTableRow = ({recipe, query, checked}) => {
+
     return (
         <tr>
             <td>
                 <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" htmlFor={recipe.id}>
-                    <input type="checkbox" id={recipe.id} className="mdl-checkbox__input" onChange={checked} />
+                    <input type="checkbox" id={recipe.id} className="mdl-checkbox__input" onChange={checked} checked={recipe.checked} />
                 </label>
             </td>
             <td className="mdl-data-table__cell--non-numeric">{recipe.name}</td>

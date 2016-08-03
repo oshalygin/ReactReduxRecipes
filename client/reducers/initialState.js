@@ -9,7 +9,8 @@ if (!!initialState) {
 } else {
     console.log("Local Storage was empty, persisting from application");
 }
-
+console.log(initialState);
 export default {
-    recipes: initialState ? initialState.recipes : []
+    recipes: initialState ? initialState.recipes : [],
+    shoppingCart: initialState ? initialState.shoppingCart: []
 };

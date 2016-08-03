@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
 import * as recipeActions from "../../actions/recipeActions.js";
+import * as shoppingCartActions from "../../actions/shoppingCartActions.js";
 
 import RecipeTable from "./recipeTable.jsx";
 import IngredientList from "../ingredient/ingredientList.jsx";
@@ -16,22 +17,24 @@ export class RecipesPage extends React.Component {
         this.state = {
             recipes: Object.assign([], ...props.recipes),
             query: "",
-            ingredients: []
+            shoppingCart: Object.assign([], ...props.shoppingCart)
         };
         this.updateRecipeState = this.updateRecipeState.bind(this);
         this.filterIngredients = this.filterIngredients.bind(this);
         this.ingredientExistsInRecipe = this.ingredientExistsInRecipe.bind(this);
         this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
+        this.updateIngredientList = this.updateShoppingCart.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({ recipes: newProps.recipes });
+        this.setState({ recipes: newProps.recipes, ingredients: newProps.ingredients });
     }
 
     componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line
         this.setState({ //eslint-disable-line
-            recipes: this.props.recipes
+            recipes: this.props.recipes,
+            shoppingCart: this.props.shoppingCart
         });
     }
 
@@ -64,8 +67,8 @@ export class RecipesPage extends React.Component {
         });
     }
 
-    updateIngredientList() {
-        const updatedIngredients = this.props.recipes
+    updateShoppingCart() {
+        const updatedShoppingCart = this.props.recipes
             .filter(recipe => recipe.checked)
             .reduce((listOfIngredients, filteredRecipe) => {
                 const compiledListOfIngredients = [...listOfIngredients, ...filteredRecipe.ingredients];
@@ -74,30 +77,32 @@ export class RecipesPage extends React.Component {
             .slice()
             .sort();
 
-      this.setState({ ingredients: updatedIngredients });
+        this.setState({ shoppingCart: updatedShoppingCart });
+        return this.props.shoppingCartActions.saveShoppingCart(updatedShoppingCart);
     }
 
     checkboxChangeHandler(event) {
-        const retrievedRecipe = this.props.recipes
-            .find(recipe => recipe.id === event.target.id);
-        retrievedRecipe.checked = !retrievedRecipe.checked;
-        this.updateIngredientList();
+        const checkedRecipe = this.props.recipes
+            .filter(recipe => recipe.id === event.target.id)[0];
+        console.log(checkedRecipe);
+        this.props.recipeActions.updateRecipe(checkedRecipe);
+        this.updateShoppingCart();
     }
 
     render() {
-        const {recipes, query, ingredients} = this.state;
+        const {recipes, query, shoppingCart} = this.state;
         const recipeContent = !!recipes.length
             ? (<RecipeTable
                 recipes={recipes}
                 query={query}
                 checked= {this.checkboxChangeHandler} />)
             : (<NotFound message={`There were no matches for ${query}...`} />);
-        const ingredientContent = !!ingredients.length
+        const ingredientContent = !!shoppingCart.length
             ? (<span>
                 <p className="mdl-typography--text-center mdl-typography--title">
                     Ingredients to purchase...
                 </p>
-                <IngredientList ingredients={ingredients} />
+                <IngredientList ingredients={shoppingCart} />
             </span>)
             : (<span></span>);
 
@@ -123,18 +128,22 @@ export class RecipesPage extends React.Component {
 
 RecipesPage.propTypes = {
     recipes: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    shoppingCart: PropTypes.array.isRequired,
+    recipeActions: PropTypes.object.isRequired,
+    shoppingCartActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        recipes: state.recipes
+        recipes: state.recipes,
+        shoppingCart: state.shoppingCart
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(recipeActions, dispatch)
+        recipeActions: bindActionCreators(recipeActions, dispatch),
+        shoppingCartActions: bindActionCreators(shoppingCartActions, dispatch)
     };
 }
 
