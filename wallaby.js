@@ -1,39 +1,59 @@
-const wallabyWebpack = require("wallaby-webpack");
-
 module.exports = function (wallaby) {
-
-    const webpackPostprocessor = wallabyWebpack({
-        externals: {
-            // Use external version of React instead of rebuilding it
-            "react": "React" //eslint-disable-line
-        },
-        resolve: {
-            extensions: ["", ".js", ".jsx"]
-        }
-    });
 
     return {
         files: [
-            { pattern: "node_modules/babel-polyfill/dist/polyfill.min.js", instrument: false },
-            { pattern: "node_modules/phantomjs-polyfill/bind-polyfill.js", instrument: false },
-            { pattern: "node_modules/react/dist/react-with-addons.js", instrument: false },
-
-            { pattern: "client/**/*.js*", load: false },
-            { pattern: "!client/**/*.spec.js*", load: false }
+            "client/**/*.js*",
+            "server/**/*.js",
+            "!client/**/*.json",
+            "!client/**/*.spec.js*",
+            "!server/**/*.spec.js*",
+            { pattern: "/**/*.png", load: "null" }
         ],
 
         tests: [
-            { pattern: "client/**/*.spec.js*", load: false }
-        ],
+            "client/**/*.spec.js",
+            "server/**/*.spec.js"
 
+        ],
+        env: {
+            type: "node",
+            params: {
+                env: "NODE_ENV=test"
+            }
+        },
         compilers: {
-            "**/*.js*": wallaby.compilers.babel()
+            "**/*.js*": wallaby.compilers.babel({
+                presets: ["react", "es2015"],
+                plugins: ["transform-object-rest-spread"]
+            })
         },
 
-        postprocessor: webpackPostprocessor,
+        setup: function () {
 
-        bootstrap: function () {
-            window.__moduleBundler.loadTests(); //eslint-disable-line
+            const noop = () => { };
+
+            require.extensions[".css"] = noop;
+            require.extensions[".ico"] = noop;
+            require.extensions[".png"] = noop;
+            require.extensions[".svg"] = noop;
+
+            let jsdom = require("jsdom").jsdom;
+            let exposedProperties = ["window", "navigator", "document"];
+
+            global.document = jsdom("");
+            global.window = document.defaultView;
+            Object.keys(document.defaultView).forEach((property) => {
+                if (typeof global[property] === "undefined") {
+                    exposedProperties.push(property);
+                    global[property] = document.defaultView[property];
+                }
+            });
+
+            global.navigator = {
+                userAgent: "node.js"
+            };
+
+            documentRef = document; //eslint-disable-line no-undef
         }
     };
 };
