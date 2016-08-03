@@ -27,12 +27,12 @@ import RecipesPage from "./components/recipe/recipesPage.jsx";
 
 
 const store = configureStore();
-store.dispatch(loadRecipes());
 
 store.subscribe(() => {
+    console.log("saving state....");
     saveSate(store.getState());
 });
-
+store.dispatch(loadRecipes());
 
 render(
     <Provider store={store}>

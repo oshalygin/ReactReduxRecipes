@@ -1,4 +1,6 @@
 // import colors from "colors";
+/* eslint-disable no-undefined */
+/* eslint-disable no-console */
 
 export const loadState = () => {
     try {
@@ -18,8 +20,7 @@ export const saveSate = (state) => {
     try {
         const serializedState = JSON.stringify(state);
         localStorage.setItem("state", serializedState);
-    }
-    catch (error) {
+    } catch (error) {
         console.log("save state error: " + error);
     }
 };
