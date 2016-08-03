@@ -11,6 +11,5 @@ if (!!initialState) {
 }
 console.log(initialState);
 export default {
-    recipes: initialState ? initialState.recipes : [],
-    shoppingCart: initialState ? initialState.shoppingCart: []
+    recipes: initialState ? initialState.recipes : []
 };
