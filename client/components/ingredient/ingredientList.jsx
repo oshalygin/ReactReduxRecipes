@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import IngredientListRow from "./ingredientListRow.jsx";
+//UUID passed
 
 const IngredientList = ({ingredients}) => {
     return (
@@ -7,7 +8,7 @@ const IngredientList = ({ingredients}) => {
             {ingredients.map(ingredient => {
                 return (
                     <IngredientListRow
-                        key={ingredient}
+                        key={Math.random(1000)}
                         ingredient={ingredient} />
                 );
             }) }
