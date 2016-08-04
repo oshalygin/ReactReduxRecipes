@@ -6,7 +6,7 @@ import configureStore from "./store/configureStore";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
 import { loadRecipes } from "./actions/recipeActions";
-import { saveSate } from "./reducers/localStorage";
+import { saveState } from "./reducers/localStorage";
 
 import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -33,7 +33,7 @@ if (!store.getState().recipes.length) {
 }
 
 store.subscribe(() => {
-    saveSate(store.getState());
+    saveState(store.getState());
 });
 
 render(
