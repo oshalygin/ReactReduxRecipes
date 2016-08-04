@@ -31,6 +31,7 @@ describe("<RecipeTableRow />", () => {
                 name: "Risotto", type: "Italian",
                 ingredients: ["Rice", "Chicken Stock"],
                 checked: false
+
             };
         const props = { recipe, checked: function () { }, query: "" };
         const expected = 5;

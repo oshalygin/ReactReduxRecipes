@@ -83,19 +83,19 @@ describe("Recipe Actions", () => {
         });
 
 
-        recipeActions.loadRecipes()(function () {});
+        recipeActions.loadRecipes()(function () { });
 
     });
 
     it("updating a recipe will properly toggle the checked flag from false to true", () => {
 
-        const expected = typeof function () { };
         const recipe = {
             type: "Mexican",
             checked: false
         };
 
         recipeActions.updateRecipe(recipe)(function () { });
+
 
     });
 });
