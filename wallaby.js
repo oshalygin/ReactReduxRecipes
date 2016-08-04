@@ -49,6 +49,12 @@ module.exports = function (wallaby) {
                 }
             });
 
+
+            global.localStorage = {
+                getItem: function () { },
+                setItem: function () { }
+            };
+
             global.navigator = {
                 userAgent: "node.js"
             };
