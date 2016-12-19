@@ -1,7 +1,7 @@
 # <a href='#'>React Redux Recipes</a>
 
 &nbsp;&nbsp; [![Build Status](https://travis-ci.org/oshalygin/ReactReduxRecipes.svg?branch=master)](https://travis-ci.org/oshalygin/ReactReduxRecipes)
-[![Coverage Status](http://coveralls.io/repos/github/oshalygin/ReactReduxRecipes/badge.svg?branch=master)](https://coveralls.io/github/oshalygin/ReactReduxRecipes?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7e15c62b3b5e45d09f063ed8f311d2c4)](https://www.codacy.com/app/oshalygin/ReactReduxRecipes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oshalygin/ReactReduxRecipes&amp;utm_campaign=Badge_Grade)
 
 
 ####To run this application follow these steps:
