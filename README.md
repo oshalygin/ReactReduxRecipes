@@ -1,5 +1,7 @@
 # <a href='#'>React Redux Recipes</a>
 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7e15c62b3b5e45d09f063ed8f311d2c4)](https://www.codacy.com/app/oshalygin/ReactReduxRecipes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oshalygin/ReactReduxRecipes&amp;utm_campaign=badger)
 &nbsp;&nbsp; [![Build Status](https://travis-ci.org/oshalygin/ReactReduxRecipes.svg?branch=master)](https://travis-ci.org/oshalygin/ReactReduxRecipes)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7e15c62b3b5e45d09f063ed8f311d2c4)](https://www.codacy.com/app/oshalygin/ReactReduxRecipes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oshalygin/ReactReduxRecipes&amp;utm_campaign=Badge_Grade)
 
