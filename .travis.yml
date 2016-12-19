@@ -1,4 +1,13 @@
 language: node_js
 node_js:
-  - "6.1"
+  - "7.2.1"
+
+cache:
+  yarn: true
+
+script:
+  - npm run lint
+  - npm run test:cover
+  - npm run codacy:coverage
+
 after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
