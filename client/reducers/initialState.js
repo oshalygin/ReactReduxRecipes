@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import { loadState } from "./localStorage";
+import { loadState } from './localStorage';
 const initialState = loadState();
 
 export default {
-    recipes: !!initialState && initialState.recipes
-        ? initialState.recipes
-        : []
+  recipes: !!initialState && initialState.recipes
+    ? initialState.recipes
+    : []
 };

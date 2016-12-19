@@ -21,7 +21,8 @@
 ```sh
 npm install
 npm start
-npm test
+# This will run all tests with coverage
+npm test:cover 
 npm build
 ```
 

@@ -1,35 +1,35 @@
-import recipeController from "./recipeController";
-import expect from "expect";
+import recipeController from './recipeController';
+import expect from 'expect';
 
-describe("Recipe Controller", () => {
+describe('Recipe Controller', () => {
 
-    it("status of 200 is returned when a successful get is made", () => {
-        const expected = 200;
-        const dataAccessMock = {
-            getAllRecipes: function (query, callback) {
-                const recipe = {
-                    type: "Mexican"
-                };
-                callback(null, recipe);
-            }
+  it('status of 200 is returned when a successful get is made', () => {
+    const expected = 200;
+    const dataAccessMock = {
+      getAllRecipes(query, callback) {
+        const recipe = {
+          type: 'Mexican'
         };
+        callback(null, recipe);
+      }
+    };
 
-        let sut = recipeController(dataAccessMock);
+    const sut = recipeController(dataAccessMock);
 
-        let request = {
-            body: {
-                type: "Mexican"
-            }
-        };
-        let response = {
-            status: function (statusCode) {
-                expect(statusCode).toEqual(expected);
-                return this;
-            },
-            json: function () { }
-        };
+    const request = {
+      body: {
+        type: 'Mexican'
+      }
+    };
+    const response = {
+      status(statusCode) {
+        expect(statusCode).toEqual(expected);
+        return this;
+      },
+      json() { }
+    };
 
-        sut.get(request, response);
+    sut.get(request, response);
 
-    });
+  });
 });

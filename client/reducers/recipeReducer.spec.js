@@ -1,119 +1,119 @@
-import expect from "expect";
-import recipeReducer from "./recipeReducer";
-import * as actionTypes from "../actions/actionTypes";
+import expect from 'expect';
+import recipeReducer from './recipeReducer';
+import * as actionTypes from '../actions/actionTypes';
 
-describe("Recipe Reducer", () => {
+describe('Recipe Reducer', () => {
 
-    it("recipe reducer should set the id property to the type-name of the recipe", () => {
+  it('recipe reducer should set the id property to the type-name of the recipe', () => {
 
 
-        const initialState = [];
-        const recipes = [
-            {
-                name: "Risotto", type: "Italian",
-                ingredients: ["Rice", "Chicken Stock"]
-            },
-            {
-                name: "Enchiladas", type: "Mexican",
-                ingredients: ["Tomato Sauce", "Tomato"]
-            }];
+    const initialState = [];
+    const recipes = [
+      {
+        name: 'Risotto', type: 'Italian',
+        ingredients: ['Rice', 'Chicken Stock']
+      },
+      {
+        name: 'Enchiladas', type: 'Mexican',
+        ingredients: ['Tomato Sauce', 'Tomato']
+      }];
 
-        const expected = "italian-risotto";
+    const expected = 'italian-risotto';
 
-        const loadRecipesAction = {
-            type: actionTypes.LOAD_RECIPES_SUCCESS,
-            recipes
-        };
+    const loadRecipesAction = {
+      type: actionTypes.LOAD_RECIPES_SUCCESS,
+      recipes
+    };
 
-        let newRecipesState = recipeReducer(initialState, loadRecipesAction);
-        let actual = newRecipesState[0].id;
-        expect(actual).toEqual(expected);
+    const newRecipesState = recipeReducer(initialState, loadRecipesAction);
+    const actual = newRecipesState[0].id;
+    expect(actual).toEqual(expected);
 
+  });
+
+  it('recipe reducer should set the intiial state of checked to false for every recipe', () => {
+
+    const initialState = [];
+    const recipes = [
+      {
+        name: 'Risotto', type: 'Italian',
+        ingredients: ['Rice', 'Chicken Stock']
+      },
+      {
+        name: 'Enchiladas', type: 'Mexican',
+        ingredients: ['Tomato Sauce', 'Tomato']
+      }];
+
+    const loadRecipesAction = {
+      type: actionTypes.LOAD_RECIPES_SUCCESS,
+      recipes
+    };
+
+    const newRecipesState = recipeReducer(initialState, loadRecipesAction);
+    newRecipesState.forEach(recipe => {
+      const actual = recipe.checked;
+      expect(actual).toBeFalsy();
     });
+  });
 
-    it("recipe reducer should set the intiial state of checked to false for every recipe", () => {
+  it('updating a recipe properly returns a different(immuatble) recipe object', () => {
 
-        const initialState = [];
-        const recipes = [
-            {
-                name: "Risotto", type: "Italian",
-                ingredients: ["Rice", "Chicken Stock"]
-            },
-            {
-                name: "Enchiladas", type: "Mexican",
-                ingredients: ["Tomato Sauce", "Tomato"]
-            }];
+    const initialState = [
+      {
+        id: 'italian-risotto',
+        name: 'Risotto', type: 'Italian',
+        ingredients: ['Rice', 'Chicken Stock'],
+        checked: false
+      },
+      {
+        id: 'mexican-enchiladas',
+        name: 'Enchiladas', type: 'Mexican',
+        ingredients: ['Tomato Sauce', 'Tomato'],
+        checked: false
+      }];
 
-        const loadRecipesAction = {
-            type: actionTypes.LOAD_RECIPES_SUCCESS,
-            recipes
-        };
+    const updatedRecipe = {
+      ...initialState[0], checked: true
+    };
 
-        let newRecipesState = recipeReducer(initialState, loadRecipesAction);
-        newRecipesState.map(recipe => {
-            let actual = recipe.checked;
-            expect(actual).toBeFalsy();
-        });
-    });
+    const updateRecipesAction = {
+      type: actionTypes.UPDATE_RECIPE_SUCCESS,
+      recipe: updatedRecipe
+    };
 
-    it("updating a recipe properly returns a different(immuatble) recipe object", () => {
+    const newRecipesState = recipeReducer(initialState, updateRecipesAction);
+    expect(newRecipesState).toNotEqual(initialState);
 
-        const initialState = [
-            {
-                id: "italian-risotto",
-                name: "Risotto", type: "Italian",
-                ingredients: ["Rice", "Chicken Stock"],
-                checked: false
-            },
-            {
-                id: "mexican-enchiladas",
-                name: "Enchiladas", type: "Mexican",
-                ingredients: ["Tomato Sauce", "Tomato"],
-                checked: false
-            }];
+  });
 
-        const updatedRecipe = {
-            ...initialState[0], checked: true
-        };
+  it('updating a recipe properly updates a property on the object', () => {
 
-        const updateRecipesAction = {
-            type: actionTypes.UPDATE_RECIPE_SUCCESS,
-            recipe: updatedRecipe
-        };
+    const initialState = [
+      {
+        id: 'italian-risotto',
+        name: 'Risotto', type: 'Italian',
+        ingredients: ['Rice', 'Chicken Stock'],
+        checked: false
+      },
+      {
+        id: 'mexican-enchiladas',
+        name: 'Enchiladas', type: 'Mexican',
+        ingredients: ['Tomato Sauce', 'Tomato'],
+        checked: false
+      }];
 
-        let newRecipesState = recipeReducer(initialState, updateRecipesAction);
-        expect(newRecipesState).toNotEqual(initialState);
+    const updatedRecipe = {
+      ...initialState[0], checked: true
+    };
 
-    });
+    const updateRecipesAction = {
+      type: actionTypes.UPDATE_RECIPE_SUCCESS,
+      recipe: updatedRecipe
+    };
 
-    it("updating a recipe properly updates a property on the object", () => {
+    const newRecipesState = recipeReducer(initialState, updateRecipesAction);
+    const actual = newRecipesState[0].checked;
+    expect(actual).toBeTruthy();
 
-        const initialState = [
-            {
-                id: "italian-risotto",
-                name: "Risotto", type: "Italian",
-                ingredients: ["Rice", "Chicken Stock"],
-                checked: false
-            },
-            {
-                id: "mexican-enchiladas",
-                name: "Enchiladas", type: "Mexican",
-                ingredients: ["Tomato Sauce", "Tomato"],
-                checked: false
-            }];
-
-        const updatedRecipe = {
-            ...initialState[0], checked: true
-        };
-
-        const updateRecipesAction = {
-            type: actionTypes.UPDATE_RECIPE_SUCCESS,
-            recipe: updatedRecipe
-        };
-
-        let newRecipesState = recipeReducer(initialState, updateRecipesAction);
-        let actual = newRecipesState[0].checked;
-        expect(actual).toBeTruthy();
-
-    });
+  });
 });
